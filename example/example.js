@@ -1,10 +1,10 @@
 'use strict';
 
-angular.module('example', ['ui.mention']).run(function ($rootScope) {
+angular.module('example', ['ui.mention']).run(["$rootScope", function ($rootScope) {
   $rootScope.post = {
     message: 'hi there @k'
   };
-}).directive('mentionExample', function () {
+}]).directive('mentionExample', function () {
   return {
     require: 'uiMention',
     link: function link($scope, $element, $attrs, uiMention) {
@@ -32,4 +32,35 @@ angular.module('example', ['ui.mention']).run(function ($rootScope) {
   };
 });
 
-var choices = [{ first: 'bob', last: 'barker', id: 11123 }, { first: 'kenny', last: 'logins', id: '123ab-123' }, { first: 'kyle', last: 'corn', id: '123' }, { first: 'steve', last: 'rodriguez', id: 'hi' }, { first: 'steve', last: 'holt', id: '0-9' }, { first: 'megan', last: 'burgerpants', id: 'ab-' }];
+var choices = [
+  { first: 'bob', last: 'barker', id: 11123 },
+  { first: 'kenny', last: 'logins', id: '123ab-123' },
+  { first: 'kyle', last: 'corn', id: '123' },
+  { first: 'steve', last: 'rodriguez', id: 'hi' },
+  { first: 'steve', last: 'holt', id: '0-9' },
+  { first: 'megan', last: 'burgerpants', id: 'ab-' },
+  { first: 'megan', last: 'burgerpants', id: 'ab-' },
+  { first: 'megan', last: 'burgerpants', id: 'ab-' },
+  { first: 'megan', last: 'burgerpants', id: 'ab-' },
+  { first: 'megan', last: 'burgerpants', id: 'ab-' },
+  { first: 'megan', last: 'burgerpants', id: 'ab-' },
+  { first: 'megan', last: 'burgerpants', id: 'ab-' },
+  { first: 'megan', last: 'burgerpants', id: 'ab-' },
+  { first: 'megan', last: 'burgerpants', id: 'ab-' },
+  { first: 'megan', last: 'burgerpants', id: 'ab-' },
+  { first: 'megan', last: 'burgerpants', id: 'ab-' },
+  { first: 'megan', last: 'burgerpants', id: 'ab-' },
+  { first: 'megan', last: 'burgerpants', id: 'ab-' },
+  { first: 'megan', last: 'burgerpants', id: 'ab-' },
+  { first: 'megan', last: 'burgerpants', id: 'ab-' },
+  { first: 'megan', last: 'burgerpants', id: 'ab-' },
+  { first: 'megan', last: 'burgerpants', id: 'ab-' },
+  { first: 'megan', last: 'burgerpants', id: 'ab-' },
+  { first: 'megan', last: 'burgerpants', id: 'ab-' },
+  { first: 'megan', last: 'burgerpants', id: 'ab-' },
+  { first: 'megan', last: 'burgerpants', id: 'ab-' },
+  { first: 'megan', last: 'burgerpants', id: 'ab-' },
+  { first: 'megan', last: 'burgerpants', id: 'ab-' },
+  { first: 'megan', last: 'burgerpants', id: 'ab-' },
+  { first: 'megan', last: 'burgerpants', id: 'ab-' },
+];

@@ -1,81 +1,82 @@
-body {
-  font-size: 14px;
-  font-family: 'Helvetica';
-}
-* {
-  // box-sizing: border-box;
-}
-
-textarea[ui-mention], textarea[ui-mention] + * {
-  line-height: 1em;
-  font-size: 1rem;
-  padding: 5px;
-  border: 1px;
-  font-family: helvetica;
-  font-weight: normal;
-}
-
-
-textarea[ui-mention] {
-  // box-sizing: content-box;
-  min-height: 100px;
-  width: 100%;
-  display: block;
-  border: 1px solid;
-  z-index: 2;
-  position: relative;
-  &[ui-mention] {
-    background: rgba(0,0,0,0);
-  }
-}
-a {
-  color: blue;
-  text-decoration: underline;
-    cursor: pointer;
-  &:hover {
-    color: green;
-  }
+.comment {
+  background-color: #fffde9;
+  padding: 20px;
+  border-radius: 2px;
 }
 
 .mention-container {
   position: relative;
+  background: #fff;
+  border: 1px solid #dcdcde;
+  font-size: 14px;
 }
-.mention-highlight {
+
+.comment textarea {
+  position: relative;
+  z-index: 2;
+  display: block;
+  width: 100%;
+  box-sizing: border-box;
+  background-color: transparent;
+
+  &:focus {
+    outline: none;
+  }
+}
+
+.comment textarea,
+.comment .mention-highlight {
+  line-height: 1;
+  font-size: 16px;
+  padding: 20px;
+  border: 0;
+  font-family: sans-serif;
+  font-weight: normal;
+}
+
+.comment .mention-highlight {
   position: absolute;
+  z-index: 1;
   top: 0;
   left: 0;
   right: 0;
   bottom: 0;
-  border: 1px;
-  padding: 2px;
-  z-index: 1;
-  color: rgba(0,0,0,0);
-  white-space: pre-wrap;
-  border: 1px solid rgba(0,0,0,0);
-  width: 100%;
-
-  span {
-    border-radius: 3px;
-    background: lightblue;
-    box-shadow: 0px 0px 0px 1px blue;
-  }
+  color: transparent; // prevents text double thickness
+  margin: 0;
 }
 
-.dropdown {
+.comment .mention-highlight span {
+  background-color: rgba(128, 208, 153, 0.25);
+  outline: 2px solid rgba(128, 208, 153, 0.25);
+}
+
+.comment .dropdown {
   position: absolute;
   top: 100%;
-  min-width: 150px;
+  left: 0;
   right: 0;
-  background: lightblue;
-  list-style: none;
   padding: 0;
-  margin: 0;
-  a {
+  margin: 0 -1px;
+  border: 1px solid #dcdcde;
+  max-height: 300px;
+  overflow: auto;
+
+  > li {
     display: block;
-    padding: 10px;
+    font-size: 14px;
+    background: #eff1f2;
+    padding: 12.6px 15px;
     text-decoration: none;
-  }
-  .active {
-    background: lightgreen;
+    color: #999;
+    font-family: sans-serif;
+    cursor: pointer;
+
+    &:hover {
+      background: #fff;
+    }
+
+    &:not(:first-of-type) {
+      border-top: 1px solid #dcdcde;
+    }
   }
 }

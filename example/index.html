@@ -17,21 +17,21 @@
     Facebook-like <strong>@mentions</strong> in your text inputs. Designed with composability in mind.
   </p>
 
-  <div class="mention-container">
-    <textarea ui-mention mention-example
-      ng-model="post.message"
-      placeholder="Use @mention to trigger"
-      ng-trim="false"
-      ></textarea>
-    <div class="mention-highlight"></div>
+  <div class="comment">
+    <div class="mention-container">
+      <textarea ui-mention mention-example
+        ng-model="post.message"
+        placeholder="Use @mention to trigger"
+        ng-trim="false"
+        ></textarea>
+      <pre class="mention-highlight"></pre>
 
-    <ul ng-if="$mention.choices.length" class="dropdown">
-      <li ng-repeat="choice in $mention.choices" ng-class="{active:$mention.activeChoice==choice}">
-        <a ng-click="$mention.select(choice)">
+      <ul ng-if="$mention.choices.length" class="dropdown">
+        <li ng-repeat="choice in $mention.choices" ng-class="{active:$mention.activeChoice==choice}" ng-click="$mention.select(choice)">
           {{::choice.first}} {{::choice.last}}
-        </a>
-      </li>
-    </ul>
+        </li>
+      </ul>
+    </div>
   </div>
 
   <input ng-model="newValue" placeholder="New Value"><button ng-click="post.message=newValue">Set Value</button><br>
