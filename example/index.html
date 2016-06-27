@@ -27,7 +27,7 @@
       <pre class="mention-highlight"></pre>
 
       <ul ng-if="$mention.choices.length" class="dropdown">
-        <li ng-repeat="choice in $mention.choices" ng-class="{active:$mention.activeChoice==choice}" ng-click="$mention.select(choice)">
+        <li ng-repeat="choice in $mention.choices" ng-class="{active:$mention.activeChoice==choice}" ng-mousedown="$event.preventDefault()" ng-click="$mention.select(choice)">
           {{::choice.first}} {{::choice.last}}
         </li>
       </ul>
