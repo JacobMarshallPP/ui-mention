@@ -71,7 +71,8 @@
     font-family: sans-serif;
     cursor: pointer;
 
-    &:hover {
+    &:hover,
+    &.active {
       background: #fff;
     }
 

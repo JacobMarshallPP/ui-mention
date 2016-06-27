@@ -61,7 +61,7 @@
     color: #999;
     font-family: sans-serif;
     cursor: pointer; }
-    .comment .dropdown > li:hover {
+    .comment .dropdown > li:hover, .comment .dropdown > li.active {
       background: #fff; }
     .comment .dropdown > li:not(:first-of-type) {
       border-top: 1px solid #dcdcde; }
