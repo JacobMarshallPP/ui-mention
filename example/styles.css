@@ -1,13 +1,20 @@
+*, *:before, *:after {
+  box-sizing: border-box; }
+
 .comment {
   background-color: #fffde9;
   padding: 20px;
   border-radius: 2px; }
 
 .mention-container {
+  position: relative; }
+
+.mention-content {
   position: relative;
   background: #fff;
   border: 1px solid #dcdcde;
-  font-size: 14px; }
+  font-size: 14px;
+  overflow: hidden; }
 
 .comment textarea {
   position: relative;
@@ -15,6 +22,7 @@
   display: block;
   width: 100%;
   max-width: 100%;
+  max-height: 400px;
   box-sizing: border-box;
   background-color: transparent; }
   .comment textarea:focus {
@@ -27,7 +35,8 @@
   padding: 20px;
   border: 0;
   font-family: sans-serif;
-  font-weight: normal; }
+  font-weight: normal;
+  white-space: pre-wrap; }
 
 .comment .mention-highlight {
   position: absolute;
@@ -37,7 +46,8 @@
   right: 0;
   bottom: 0;
   color: transparent;
-  margin: 0; }
+  margin: 0;
+  transform: translateZ(0); }
 
 .comment .mention-highlight span {
   background-color: rgba(128, 208, 153, 0.25);
@@ -49,7 +59,7 @@
   left: 0;
   right: 0;
   padding: 0;
-  margin: 0 -1px;
+  margin: -1px 0 0 0;
   border: 1px solid #dcdcde;
   max-height: 300px;
   overflow: auto; }

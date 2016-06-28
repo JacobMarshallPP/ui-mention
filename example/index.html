@@ -19,12 +19,13 @@
 
   <div class="comment">
     <div class="mention-container">
-      <textarea ui-mention mention-example
-        ng-model="post.message"
-        placeholder="Use @mention to trigger"
-        ng-trim="false"
-        ></textarea>
-      <pre class="mention-highlight"></pre>
+      <div class="mention-content">
+        <textarea ui-mention mention-example
+          ng-model="post.message"
+          placeholder="Use @mention to trigger"
+          ng-trim="false"></textarea>
+        <pre class="mention-highlight"></pre>
+      </div>
 
       <ul ng-if="$mention.choices.length" class="dropdown">
         <li ng-repeat="choice in $mention.choices" ng-class="{active:$mention.activeChoice==choice}" ng-mousedown="$event.preventDefault()" ng-click="$mention.select(choice)">
