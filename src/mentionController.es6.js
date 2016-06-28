@@ -154,7 +154,7 @@ angular.module('ui.mention')
     this.mentions.push(choice);
 
     // Replace the search with the label
-    ngModel.$setViewValue(this.replace(choice) + ' ');
+    ngModel.$setViewValue(this.replace(choice));
 
     // Close choices panel
     this.cancel();
