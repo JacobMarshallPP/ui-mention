@@ -1,6 +1,6 @@
 angular.module('ui.mention')
 .controller('uiMention', function (
-  $element, $scope, $attrs, $q, $timeout, $document
+  $element, $scope, $attrs, $q, $timeout, $document, $window
 ) {
 
   // Beginning of input or preceeded by spaces: @sometext
@@ -9,6 +9,7 @@ angular.module('ui.mention')
   this.choices = [];
   this.mentions = [];
   var ngModel;
+  var $highlight = $element.next();
 
   /**
    * $mention.init()
@@ -84,7 +85,7 @@ angular.module('ui.mention')
     this.mentions.forEach( mention => {
       html = html.replace(this.encode(mention), this.highlight(mention));
     });
-    $element.next().html(html);
+    $highlight.html(html);
     return html;
   };
 
@@ -252,6 +253,11 @@ angular.module('ui.mention')
     $element[0].style.height = $element[0].scrollHeight + 'px';
   };
 
+  this.scrollfix = function(event) {
+    // Position the highlight element relative to the scroll top
+    $highlight.css('top', '-' + event.target.scrollTop + 'px');
+  };
+
   // Interactions to trigger searching
   $element.on('keyup click focus', event => {
     // If event is fired AFTER activeChoice move is performed
@@ -324,6 +330,13 @@ angular.module('ui.mention')
 
   // Autogrow is mandatory beacuse the textarea scrolls away from highlights
   $element.on('input', this.autogrow);
+
+  // Fixes issues when resizing & textareas changing dimensions
+  angular.element($window).on('resize', this.autogrow);
+
   // Initialize autogrow height
   $timeout(this.autogrow, true);
+
+  // Fix overflowing content
+  $element.on('scroll', this.scrollfix);
 });

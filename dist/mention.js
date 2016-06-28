@@ -19,7 +19,7 @@ angular.module('ui.mention', []).directive('uiMention', function () {
 });
 'use strict';
 
-angular.module('ui.mention').controller('uiMention', ["$element", "$scope", "$attrs", "$q", "$timeout", "$document", function ($element, $scope, $attrs, $q, $timeout, $document) {
+angular.module('ui.mention').controller('uiMention', ["$element", "$scope", "$attrs", "$q", "$timeout", "$document", "$window", function ($element, $scope, $attrs, $q, $timeout, $document, $window) {
   var _this2 = this;
 
   // Beginning of input or preceeded by spaces: @sometext
@@ -28,6 +28,7 @@ angular.module('ui.mention').controller('uiMention', ["$element", "$scope", "$at
   this.choices = [];
   this.mentions = [];
   var ngModel;
+  var $highlight = $element.next();
 
   /**
    * $mention.init()
@@ -108,7 +109,7 @@ angular.module('ui.mention').controller('uiMention', ["$element", "$scope", "$at
     _this2.mentions.forEach(function (mention) {
       html = html.replace(_this2.encode(mention), _this2.highlight(mention));
     });
-    $element.next().html(html);
+    $highlight.html(html);
     return html;
   };
 
@@ -281,6 +282,11 @@ angular.module('ui.mention').controller('uiMention', ["$element", "$scope", "$at
     if (style.boxSizing == 'border-box') $element[0].style.height = $element[0].scrollHeight + 'px';
   };
 
+  this.scrollfix = function (event) {
+    // Position the highlight element relative to the scroll top
+    $highlight.css('top', '-' + event.target.scrollTop + 'px');
+  };
+
   // Interactions to trigger searching
   $element.on('keyup click focus', function (event) {
     // If event is fired AFTER activeChoice move is performed
@@ -351,6 +357,13 @@ angular.module('ui.mention').controller('uiMention', ["$element", "$scope", "$at
 
   // Autogrow is mandatory beacuse the textarea scrolls away from highlights
   $element.on('input', this.autogrow);
+
+  // Fixes issues when resizing & textareas changing dimensions
+  angular.element($window).on('resize', this.autogrow);
+
   // Initialize autogrow height
   $timeout(this.autogrow, true);
+
+  // Fix overflowing content
+  $element.on('scroll', this.scrollfix);
 }]);
